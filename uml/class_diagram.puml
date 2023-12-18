@@ -1,0 +1,56 @@
+@startuml
+
+class App {
+    #_clock: Clock
+    #_screen: Surface
+    #_game: list[Type[BaseGame]]
+
+    +run() -> None
+    #_get_game(index: int) -> Type[BaseGame]
+}
+
+class BaseGame {
+    #_screen: Surface
+    #_gen: array
+
+    +draw_next_gen() -> None
+
+    #_get_clear_matrix() -> array
+    #_get_neighbors_by_point() -> array
+
+    {abstract} #_get_next_value() -> int
+    {abstract} #_get_color() -> tuple
+}
+
+class HTree {
+    #_get_next_value() -> int
+    #_get_color() -> tuple
+}
+
+class Life {
+    #_get_next_value() -> int
+    #_get_color() -> tuple
+}
+
+class LiveFreeOrDie {
+    #_get_next_value() -> int
+    #_get_color() -> tuple
+}
+
+class Maze {
+    #_get_next_value() -> int
+    #_get_color() -> tuple
+}
+
+class Seeds {
+    #_get_next_value() -> int
+    #_get_color() -> tuple
+}
+
+BaseGame <|-- HTree
+BaseGame <|-- Life
+BaseGame <|-- LiveFreeOrDie
+BaseGame <|-- Maze
+BaseGame <|-- Seeds
+
+@enduml

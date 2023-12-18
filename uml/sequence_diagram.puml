@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title "Работа фреймворка для генерации клеточных автоматов"
+participant "APP" as app
+participant "BaseGame" as base_game
+participant "Maze" as maze
+
+app -> base_game: draw_next_gen()
+
+base_game --> base_game: access_token / refresh_token
+
+@enduml

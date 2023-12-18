@@ -21,7 +21,8 @@ class App:
         return self._game[index]
 
     def run(self) -> None:
-        cur_game = random.randint(0, len(self._game) - 1)
+        # cur_game = random.randint(0, len(self._game) - 1)
+        cur_game = 3
         game = self._get_game(cur_game)(self._screen)
 
         while True:

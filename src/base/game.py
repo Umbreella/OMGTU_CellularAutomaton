@@ -22,18 +22,18 @@ class BaseGame:
             for _ in range(self._screen.get_height() // config.PIXELS_IN_POINT)
         ], int8)
 
-    def _get_neighbors_by_point(self, width: int, height: int) -> array:
+    def _get_neighbors_by_point(self, x: int, y: int) -> array:
         data, row, col = self._gen, len(self._gen), len(self._gen[0])
 
-        t_row = -1 if height == 0 else height - 1
-        b_row = 0 if height == row - 1 else height + 1
-        l_col = -1 if width == 0 else width - 1
-        r_col = 0 if width == col - 1 else width + 1
+        t_row = -1 if y == 0 else y - 1
+        b_row = 0 if y == row - 1 else y + 1
+        l_col = -1 if x == 0 else x - 1
+        r_col = 0 if x == col - 1 else x + 1
 
         return array([
-            [data[t_row][l_col], data[t_row][width], data[t_row][r_col]],
-            [data[height][l_col], data[height][width], data[height][r_col]],
-            [data[b_row][l_col], data[b_row][width], data[b_row][r_col]],
+            [data[t_row][l_col], data[t_row][x], data[t_row][r_col]],
+            [data[y][l_col], data[y][x], data[y][r_col]],
+            [data[b_row][l_col], data[b_row][x], data[b_row][r_col]],
         ], int8)
 
     def draw_next_gen(self) -> None:
@@ -41,7 +41,7 @@ class BaseGame:
 
         for i in range(len(next_get)):
             for j in range(len(next_get[0])):
-                next_value = self._get_next_value(width=j, height=i)
+                next_value = self._get_next_value(x=j, y=i)
 
                 if self._gen[i][j] != next_value:
                     draw.rect(self._screen, self._get_color(next_value), (
@@ -54,7 +54,7 @@ class BaseGame:
         self._gen = next_get
 
     @abstractmethod
-    def _get_next_value(self, width: int, height: int):
+    def _get_next_value(self, x: int, y: int) -> int:
         pass
 
     @abstractmethod

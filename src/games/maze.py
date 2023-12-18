@@ -25,8 +25,8 @@ class Maze(BaseGame):
 
                 self._gen[start_height + i][start_width + j] = int(value < 2)
 
-    def _get_next_value(self, width: int, height: int) -> int:
-        neighbors = self._get_neighbors_by_point(width, height)
+    def _get_next_value(self, x: int, y: int) -> int:
+        neighbors = self._get_neighbors_by_point(x, y)
 
         sum_live = 0
 
